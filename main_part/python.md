@@ -27,7 +27,11 @@ print(sText,n,"斤苹果，每斤3.6元，一共花了",fAmont,"元。","还剩�
 `print()`函数可以接受多个变量，每个变量之间自动添加空格  
   
 ## 2. 变量命名的要求
+<<<<<<< HEAD
 ![](/main_part/001-变量命名要求.png "变量命名要求")
+=======
+![](/001-变量命名要求.png "变量命名要求")
+>>>>>>> origin/main
 
 `keyword`为关键字
 ```python
@@ -59,9 +63,15 @@ print(n, type(n))
 ## 2. Python中常见的数据类型
 - `int`即为整数
 - `float`为浮点数，**但是为什么要称为浮点数？**
+<<<<<<< HEAD
 ![](/main_part/002-浮点数的存储格式.png "浮点数的存储格式")  
     - **浮点数的缺点**  
     ![](/main_part/003-浮点数2.png)  
+=======
+![](/002-浮点数的存储格式.png "浮点数的存储格式")  
+    - **浮点数的缺点**  
+    ![](/003-浮点数2.png)  
+>>>>>>> origin/main
     如果此时  
     ```python  
     if n == 14:     #条件语句
@@ -71,7 +81,11 @@ print(n, type(n))
     ```  
     等于比较在浮点数时会出现意外！  
 - `bool`型为真假，有两值，分别为`False`、`True`  
+<<<<<<< HEAD
     ![alt text](/main_part/004-布尔型.png)  
+=======
+    ![alt text](/004-布尔型.png)  
+>>>>>>> origin/main
 ## 3. 数据类型的运算规则  
 - `int`同`int`进行`/`以外的四则运算，结果是`int`  
 - `int`同`int`进行`/`运算时，结果是`float`  
@@ -111,9 +125,15 @@ True
 ## 1. 字符串的格式  
 - ***`print()`函数中字符串用`'`以及`"`均为合法字符串***  
 但是
+<<<<<<< HEAD
 ![alt text](/main_part/005-字符串.png)  
 也就是当希望在字符串中包含`'`时，一般使用`"`包含；反之同理。否则会引起解释器混淆。  
 ![引号混淆](/main_part/006-引号混淆.png "引号混淆")  
+=======
+![alt text](/005-字符串.png)  
+也就是当希望在字符串中包含`'`时，一般使用`"`包含；反之同理。否则会引起解释器混淆。  
+![引号混淆](/006-引号混淆.png "引号混淆")  
+>>>>>>> origin/main
   
 ## 2. 转义字符
 - **但是我如果一定要这样写呢？**  
@@ -121,7 +141,11 @@ True
 ```python  
 print("I told you, \"Python is good\",\'It is terrific\'.")
 ```
+<<<<<<< HEAD
 ![转义示例](/main_part/007-转义示例.png "转义示例")
+=======
+![转义示例](/007-转义示例.png "转义示例")
+>>>>>>> origin/main
   
 - **如何在一段字符串再包含一个转义字符（反斜杠“\”）呢？**  
 ```python
@@ -138,13 +162,21 @@ print("When you need a \\ in string, put \\\\ in your code.")
 示例[7]
 （注意：从这里开始，笔者某些时候将不再在正文中展示示例代码的运行结果，所有编译的结果将以`demo.ipynb`中的示例编号的形式提醒）  
 ## 3. 大小写转换  
+<<<<<<< HEAD
 ![](/main_part/008-title.png)
+=======
+![](/008-title.png)
+>>>>>>> origin/main
 - `sName.title()`
   sName - 变量/Variable 对象/object  
   str   - 类型/Type     类/Class    存在"属性，值，行为，方法"
 `.title()`是str类型的方法-method 或者 成员函数-member function  
 - 其他的成员函数  
+<<<<<<< HEAD
   ![](/main_part/009-str.png)  
+=======
+  ![](/009-str.png)  
+>>>>>>> origin/main
 - 为什么调用函数的形式不同？  
 ```python  
 sName.upper()   .upper()函数它sName的成员函数
@@ -152,7 +184,11 @@ type(n)         普通函数，不属于任何对象
 ```  
 ## 4. 去除空格  
 示例[10]  
+<<<<<<< HEAD
 ![](/main_part/010-去除空格.png)  
+=======
+![](/010-去除空格.png)  
+>>>>>>> origin/main
 ```python  
 sText = "           How beautiful my life is!           "
 print("Output ly rstrip:", sText.rstrip(),"End")    #r for right    strip
@@ -164,7 +200,11 @@ print("Output ly strip:", sText.strip(),"End")      #stirp all
 - `float()`  
 - `str()`  
 ## 实际演示  
+<<<<<<< HEAD
 ![](/main_part/011-类型转换1.png)  
+=======
+![](/011-类型转换1.png)  
+>>>>>>> origin/main
 详细转换要求不再赘述，请读者自行领悟  
 # P2-1 微实践-鸡兔同笼
 > 《孙子算经》：今有雉兔同笼，上有三十五头，下有九十四足，问雉兔各几何？  
@@ -173,7 +213,11 @@ print("Output ly strip:", sText.strip(),"End")      #stirp all
 2. 兔子的数量 = 余下的脚的数量 / 2  
 3. 鸡的数量 = 头数 - 兔子数量  
 4. 验算：鸡的数量 * 2 + 兔子数量 * 4 = 脚的数量  
+<<<<<<< HEAD
 ![](/main_part/012-鸡兔同笼1.png)  
+=======
+![](/012-鸡兔同笼1.png)  
+>>>>>>> origin/main
 ## 1. 代码详解
 ```python
 iHeads = 35   #头的数量
