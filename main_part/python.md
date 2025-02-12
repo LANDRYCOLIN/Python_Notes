@@ -289,4 +289,46 @@ print("not a >= 10:", not a>= 10)             # not 逻辑非
 - 先乘除，后加减  
 - 通过括号调整优先级  
 - **其余的明示比暗示好，建议以括号调整优先级**，笔者在这里不在赘述，感兴趣的可以自行了解  
-# 微实践 - 地球时间
+# 微实践 - 地球时间  
+- RTC计数为格林尼治时间1970年1月1日零时起，到现在总共流逝的滴答/Tick数  
+- 计算机时间由RTC计数计算而来  
+**本次实践的任务是通过自1970年1月1日零时起流逝的总秒数，计算现在的小时，分钟及秒数**  
+## 1. 操作思路：  
+1. 秒数 & 60 - 当前秒数；  
+2. 秒数 // 60 - 总分钟数；  
+3. 总分钟数 % 60 -当前分钟数；  
+4. 总分数 // 60 - 总小时数；  
+5. 总小时数 % 24 - 当前小时数；  
+## 2. 操作  
+```python  
+#earthtime.py
+import time  #导入一个叫做time的模块
+
+curTime = time.time()  #从1970.1.1 0:0:0 -->现在经过的总秒数
+print(curTime)
+totalSeconds = int(curTime)
+curSecond = totalSeconds % 60  #当前秒数
+totalMinutes = totalSeconds // 60  #总分钟数
+curMinute = totalMinutes % 60  #当前分钟数
+totalHours = totalMinutes // 60  #总小时数
+curHour = totalHours % 24  #当前小时数
+
+print("现在是格林尼治时间",curHour,"时",curMinute,"分",curSecond,"秒")
+print("从1970.1.1零时起到现在，经过了",totalSeconds,"秒")
+```  
+注意：这里采用RTC计数只是为了练习整除求模运算，实际获取当前时间可以采用以下代码更为简洁  
+```python  
+import datetime
+curDate = datetime.datetime.now()  #当前的系统时间
+print(curDate.year,"-",curDate.month,"-",curDate.day,"\n",\
+    curDate.hour,":",curDate.minute,":",curDate.second)
+print(type(curDate))
+```  
+- 其中第三行出现的`\`为续行符，用法不再赘述，请读者自行领悟  
+# C3.4 函数及函数的定义  
+- 现有函数的使用  
+- 定义并使用新的函数  
+## 1. 现有函数的使用  
+```python
+#func.py
+```
