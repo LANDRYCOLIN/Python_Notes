@@ -23,7 +23,7 @@ sText = "我买了"  #字符串 string
 print(sText,n,"斤苹果，每斤3.6元，一共花了",fAmont,"元。","还剩下",fMoney,"元")
 ```
 `#`为注释，解释器忽略`#`后的该行  
-`=`为赋值操作符w    assignment operator  
+`=`为赋值操作符（assignment operator）  
 `print()`函数可以接受多个变量，每个变量之间自动添加空格  
   
 ## 2. 变量命名的要求
@@ -289,7 +289,7 @@ print("not a >= 10:", not a>= 10)             # not 逻辑非
 - 先乘除，后加减  
 - 通过括号调整优先级  
 - **其余的明示比暗示好，建议以括号调整优先级**，笔者在这里不在赘述，感兴趣的可以自行了解  
-# 微实践 - 地球时间  
+# P3-1 微实践 - 地球时间  
 - RTC计数为格林尼治时间1970年1月1日零时起，到现在总共流逝的滴答/Tick数  
 - 计算机时间由RTC计数计算而来  
 **本次实践的任务是通过自1970年1月1日零时起流逝的总秒数，计算现在的小时，分钟及秒数**  
@@ -329,6 +329,140 @@ print(type(curDate))
 - 现有函数的使用  
 - 定义并使用新的函数  
 ## 1. 现有函数的使用  
+```python  
+# func.py
+
+n1 = pow(2, 8)  #power 2**8
+n2 = abs(-10)   #absolute value
+n3 = round(7/2) #rounding
+
+print("2^8 = ", n1)
+print("abs(-10) = ", n2)
+print("round(7/2) = ", n3)
+
+#编译器输出
+2^8 =  256
+abs(-10) =  10
+round(7/2) =  4
+```  
+- 在以上三个实例中，2、8为实参（当然也会存在形参）  
+- 其中`round()`为四舍五入函数，但是当结果距离两个整数的距离一致（也就是x.5）时，Python默认返回偶数值  
+##  2. 定义并使用新的函数  
+1. 函数定义的语法  
+```python  
+def <函数名>(<形参列表>):
+    <函数体>
+    return <返回值列表>
+```  
+- 形式参数可以有0个到多个  
+- 返回值也可以有0个到多个，当没有返回值时，return可以省略  
+2. 电费计算实例函数
+[电费计算.py](/main_part/src/03-04/02-电费计算.py)
+```python  
+# 电费计算：（期末读书 - 期初读书） * 单价
+
+# 定义函数
+def costCompute(iStart,iEnd):    #形式参数
+    iConsume = iEnd - iStart
+    return iConsume * 0.85
+
+# 调用函数
+fElecFee1 = costCompute(1201,1875)
+fElecFee2 = costCompute(1875,2245)
+
+# 输出结果
+print("电费1：",fElecFee1)
+print("电费2：",fElecFee2)
+```  
+***注意：***
+- 函数定义的本身并不会引起函数执行，当函数调用时才会执行函数  
+- **为什么在这个实例中我们需要去定义一个函数？似乎也存在更简单方法？**  
+    - costCompute抽象成函数以后，代码阅读者一看就知道这个函数是在计算费用，程序**可读性好**  
+    - 世界运行规律变化才是主题，不变永远是特例；如果有一天要实施阶梯电价或者电价变更，只需要修改costCompute函数即可完成升级  
+# C3.5 模块及乌龟画图  
+- math模块的导入及使用  
+- 使用turtle模块画图  
+## 1. math模块的导入及使用  
+```python  
+# module.py
+
+import math
+print(math.floor(3.14))     #浮点数向下取整
+print(math.ceil(3.14))      #浮点数向上取整
+print(math.sqrt(16))        #开方
+
+from math import floor, ceil, sqrt
+print(sqrt(16))            #开方
+```  
+我们注意到，在两个`import`中，导入的谋爱调用函数时，调用方式不尽一致。  
+- 前者调用为整体模块导入，在调用时需要强调所属类  
+- 后者调用为直接将模块内的特定函数归入当前开发环境，已经为“我”的一部分，不需要强调`math.`  
+- **但是一般不采用后者的简略写法，作为开发者应当尽可能的描述清楚，简略写法会污染名字空间**  
+    - 例如，在sympy模块中也有一个名为`sqrt()`的函数，在同时使用时就会导致编译器误判  
+## 2. 乌龟画图
 ```python
-#func.py
+import turtle
+t = turtle.Pen()    # Pen对象
+iCirclesCount = 30
+for x in range(iCirclesCount):   # 循环30次
+    t.circle(100)
+    t.left(360/iCirclesCount)
 ```
+演示请读者自行运行，这里略过  
+# C3.6 获取用户的输入  
+- input()函数的使用  
+- 示例程序演示  
+```python  
+sName = input("What's your name? ")
+iAge = input("How old are you? ")   # input函数返回的是字符串类型
+print(type(iAge))    # 打印变量的类型
+iAge = int(iAge)    # 将字符串类型转换为整型
+print(type(iAge))    # 打印变量的类型
+print("Hello, " + sName + "! You are " + iAge + " years old.")
+```  
+# C3.7 占位符  
+- 通过%进行字符串格式化  
+- %d,%.2f,%s,%.1f  
+
+**观察下面这个实例：**  
+```python  
+# 占位符
+sName = "Mary"
+fPrice = 125.75
+n = 5
+sText = "%s has %d lambs, each lamb worth $%.2f. So, these lambs worth $%.1f in total." % (sName, n, fPrice, n * fPrice)
+print(sText)
+```  
+- `%s` - 字符串  
+- `%d` - 十进制数  
+- `%.2f` - 小数，2个小数位  
+- `%.1f` - 小数，1个小数位  
+# C3.8 进制  
+- 二进制 - binary  
+- 十进制 - decimal  
+- 十六进制 - hexadecimal  
+```python  
+a = 0xff    #0x 表示16进制 hexa-decimal
+b = 0b111   #0b 表示2进制 binary
+print(a)
+print(b)
+
+aa = hex(a) #转化为十六进制
+bb = bin(b) #转化为二进制
+
+# 编译器输出
+255
+7
+```  
+***注意：***
+- `0x`用于表示十六进制数；`0b`用于表示二进制数  
+- 虽然存在不同进制的表示方法，但是需要注意的时是在计算机内部均以二进制存储数据  
+
+**进制数的占位符**
+`print("%x" % (255))`中`%x`表示十六进制数的占位符，同理`%b`表示二进制占位符  
+# P3-2 微实践 - 心灵感应  
+> 玩法：  
+6张卡片上分别列出了一些60以内的整数。  
+观众心中默想一个60以内的整数，写在纸条上，不告诉任何人。  
+表演者将6张卡片呈现给观众看，观众如实回答每张卡片中是否包含那个数字。  
+根据观众的回答，表演者“猜”那个数，仿佛掌握了“读心术”  
