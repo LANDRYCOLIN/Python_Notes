@@ -466,3 +466,194 @@ bb = bin(b) #转化为二进制
 观众心中默想一个60以内的整数，写在纸条上，不告诉任何人。  
 表演者将6张卡片呈现给观众看，观众如实回答每张卡片中是否包含那个数字。  
 根据观众的回答，表演者“猜”那个数，仿佛掌握了“读心术”  
+
+这里不详细介绍，读者感兴趣可以自行搜索这个实验，其中涉及二进制数的内容。  
+# C3.9 注释  
+## 单行注释  
+`#`+注释内容  
+## 多行注释  
+```python  
+"""
+注释内容
+"""
+```  
+## 一键注释  
+选中多行注释内容后，按住`Ctrl`+`/`  
+# C4.1 列表
+> 出门买菜，最好带上篮子（容器）。这个容器既可以装鸡蛋，也可以装西红柿或者啤酒。人们很希望拥有这样一种容器，它可以装不同种类的对象，而且可以更具需要自动改变体积以适应需求。Python中的列表就是这样的容器。  
+
+***下面是列表语法的基本用法：***
+```python  
+# 列表
+months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']# 12个元素 elements
+
+print(type(months)) 
+# <class 'list'> 是一种容器 container
+
+print(len(months)) 
+# length 12 用于返回列表的元素数量，也叫列表的长度
+
+print(months[0],months[3]) 
+# January,April 通过索引 index 访问列表的元素。在大多数编程语言中，索引一般都是从0开始
+
+print(months[12])
+# 超出索引范围会报错 IndexError: list index out of range
+
+print(months[-1],months[-3])
+# December,October 负数索引表示从列表的末尾开始计数
+```  
+**注意：**  
+Python中负序号列表计数中，倒数第一个记为`-1`  
+# C4.2 列表 - 元素的访问与修改  
+```python  
+months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+
+months[3] = 4
+```  
+将列表中的第4个元素（编号为3的元素）修改为4  
+此时列表中的元素不再是同一种类型（字符串和整数），这就是我们需要的**容器**。  
+# C4.3 列表元素的增加  
+## 1. `.append`  
+```python  
+#append.py
+jack = ['10000', 'Jack Ma', 47]
+jack.append("CEO")  #成员函数 方法
+print(jack)
+
+#编译器输出
+['10000', 'Jack Ma', 47, 'CEO']
+```  
+也就是说，在上述的例子中`.append`这个成员函数可以在列表的末尾添加一个元素
+**注意：** 此处使用单双引号没有特殊含义，均可表示合法字符串  
+## 2. `.insert`  
+```python  
+jack.insert(1, 'Alibaba')  #插入
+print(jack)
+```
+`.insert(a,b)`也为成员函数，意为在位置为`a`处添加元素`b`  
+# C4.4 元素的删除  
+```python
+jack = ['10000', 'Jack Ma', 'male', 47, 'CEO']
+del jack[2]   # delete
+print(jack)
+
+sTitle = jack.pop()  # 弹出
+print(jack)
+print(sTitle)
+```  
+在这一段代码中，我们采用了两种删除方法  
+## 1. `del jack[2]`  
+删除序号为`2`的元素  
+## 2. `sTitle = jack.pop()`
+- 在这里`.pop()`成员函数为弹出末尾元素并将该元素弹出给（赋值给）前置的变量  
+- 其中`()`内可以添加需要弹出的元素序号  
+# C4.5 列表的嵌套  
+列表中可以容纳任何类型的元素，当然也可以容纳一个类型为列表的元素。  
+```python  
+# nesttedlist.py
+jack = ['10000', 'Jack Ma', 'male', '47', 'CEO']
+mary = ['10001', 'Mary Ma', 'female', '45', 'CFO']
+tom = ['10002', 'Tom Ma', 'male', '20', 'CTO']
+staff = [jack, mary, tom]
+print(staff)
+print(staff[0])
+print(staff[0][1])
+
+# 编译器输出
+[['10000', 'jack Ma', 'male', '47', 'CEO'], ['10001', 'Mary Ma', 'female', '45', 'CFO'], ['10002', 'Tom Ma', 'male', '20', 'CTO']]
+['10000', 'jack Ma', 'male', '47', 'CEO']
+Jack Ma
+```  
+- 可以看出，`staff[0]`代表这个列表中的第0个元素，这个元素也就是一个名为`jack`的列表。而`staff[0][1]`代表jack列表中的序号为1的元素，姓名`jack Ma`  
+- 我们可以将列表看作C/C++或者JAVA中的聪明的数组，而上述嵌套的列表可以视作二维数组  
+# C4.6 名字绑定  
+```python  
+# 名字绑定 name binding
+person1 = ['10000', 'Jack Ma', 'male', 47, 'CEO']
+person2 = person1
+person2[1] = "Tom Henry"
+print(person1)
+print(person2)
+
+# 编译器输出
+['10000', 'Tom Henry', 'male', 47, 'CEO']
+['10000', 'Tom Henry', 'male', 47, 'CEO']
+```  
+我们看到，本来预期是修改person2列表中的序号1元素，但是发现person1中的元素也被修改，不符合预期结果。  
+- 列表是一个对象（共用同一指针），所以person2与person1其实为列表的两个表示方法，也就是杜甫与杜子美的关系，这就是名字绑定  
+- Python解释器这样做的原因我们可以这样理解，当采取操作列表`person2 = person1`时，列表`person1`的内容可能很大（尽管在例子中没有体现这一点），复制操作较为占用资源，于是进行了“浅复制”  
+# C4.7 元素顺序  
+```python  
+# sort.py
+
+names = ['jack', 'mary', 'tom', 'dorothy', 'peter']
+names.sort()    #按照字母顺序排序
+print(names)
+
+names.sort(key = len)   #名字参数 按照字符串长度排序
+print(names)    #长度相同并列时，无论那个在前都是可以的
+
+scores = [82,66,66,93,24,15,77.8]
+scores.sort(reverse=True)
+print(scores)   #按照从大到小排序
+
+scores.sort(reverse=False)
+print(scores)   #从小到大排序
+
+namesSorted = sorted(names) #sorted()函数返回一个新的列表,排序后的列表，这是一个新列表
+print("names:",names)
+print("namesSorted:",namesSorted)
+
+# 倒序
+names.reverse()  #倒序，使列表顺序颠倒
+print(names)
+```  
+`.sort`等函数会导致列表修改（也就是顺序修改也是修改）  
+# C4.8 for循环遍历  
+```python  
+#forloop.py
+
+dummy = ['jacck',5,False,3.1415926,'mary',['A',"B"]]
+for x in dummy:
+    print(x)
+    print(type(x))
+    print('-----------------')
+
+print("End of the loop")
+```  
+# C4.9 range数值列表  
+## 1. 例1
+```python  
+print("output of range(5):")
+for i in range(5):
+    print(i)
+# 编译器输出
+output of range(5):
+0
+1
+2
+3
+4
+
+print("output of range(2,5):")
+for i in range(2,5):
+    print(i)
+# 编译器输出
+output of range(2,5):
+2
+3
+4
+```  
+## 2. 例2  
+```python  
+x = range(5)
+print(x)
+print(x[2])
+print(type(x))
+
+#编译器输出
+range(0, 5)
+2
+<class 'range'>
+```  
+从这些例子中我们可以发现range数列，
